@@ -16,7 +16,10 @@ docker-compose up
 ```
 It will run the whole services
 > user-services runs on: https://localhost:5001
+
 > topup-services runs on: https://localhost:5002
+
 > main-app runs on: https://localhost:5003
+
 > react-app runs on: https://localhost:3000
 
