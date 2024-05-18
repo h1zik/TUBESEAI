@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "5001:5000"  # Map host port 5001 to container port 5000
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DB=user_service_db
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  topup-service:
+    build: ./topup-service
+    ports:
+      - "5002:5002"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DB=topup_service_db
+    depends_on:
+      mysql:
+        condition: service_healthy
+      user-service:
+        condition: service_started
+
+  main-app:
+    build: ./main-app
+    ports:
+      - "5003:5003"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DB=main_app_db
+      - USER_SERVICE_URL=http://user-service:5000
+      - TOPUP_SERVICE_URL=http://topup-service:5002
+    depends_on:
+      mysql:
+        condition: service_healthy
+      user-service:
+        condition: service_started
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+  react-ui:
+    build: ./microservices-ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      - user-service
+      - topup-service
+      - main-app
+      - mysql
+volumes:
+  mysql_data:
