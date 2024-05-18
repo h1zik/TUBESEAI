@@ -1,20 +1,20 @@
-Download Docker and Install Docker
-Download MySQL and Install MySQL
-Go to your Project Directory, If you use CMD type and enter:
+1. Download Docker and Install Docker
+2. Download MySQL and Install MySQL
+3. Go to your Project Directory, If you use CMD type and enter:
 ```
 cd PATH/to/your/directory
 ```
-If you use terminal inside Visual Studio Code just open the project folder
+4. If you use terminal inside Visual Studio Code just open the project folder
 Type and enter:
 ```
 docker-compose build
 ```
-Just wait for the docker to build the project
+5. Just wait for the docker to build the project
 After finished, type and enter:
 ```
 docker-compose up
 ```
-It will run the whole services
+6. It will run the whole services
 > user-services runs on: https://localhost:5001
 
 > topup-services runs on: https://localhost:5002
