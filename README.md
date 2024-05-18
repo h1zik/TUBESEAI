@@ -1,5 +1,7 @@
 **1. Download Docker and Install Docker**
+
 **2. Download MySQL and Install MySQL**
+
 **3. Go to your Project Directory, If you use CMD type and enter:**
 ```
 cd PATH/to/your/directory
