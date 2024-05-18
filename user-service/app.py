@@ -23,7 +23,7 @@ app.json_encoder = CustomJSONEncoder
 
 def get_db_connection():
     return mysql.connector.connect(
-        host=os.environ.get('MYSQL_HOST', 'localhost'),
+        host=os.environ.get('MYSQL_HOST', 'mysql'),
         user=os.environ.get('MYSQL_USER', 'root'),
         password=os.environ.get('MYSQL_PASSWORD', 'root'),
         database=os.environ.get('MYSQL_DATABASE', 'user_service_db')

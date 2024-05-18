@@ -3,6 +3,7 @@ import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 import { useTable } from 'react-table';
 import styled from 'styled-components';
+import jwtDecode from 'jwt-decode';
 
 const Container = styled.div`
   padding: 2rem;
@@ -57,11 +58,15 @@ const TransactionHistory = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`http://localhost:5003/transactions/${auth.user}`, {
+        const decodedToken = jwtDecode(auth.token);
+        const userId = decodedToken.user_id;
+
+        const response = await axios.get(`http://localhost:5003/transactions/${userId}`, {
           headers: {
             Authorization: `Bearer ${auth.token}`
           }
         });
+        console.log('Fetched transactions:', response.data); // Debugging log
         setTransactions(response.data);
       } catch (error) {
         console.error('Error fetching transaction history:', error);
