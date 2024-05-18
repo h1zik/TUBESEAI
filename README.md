@@ -25,3 +25,5 @@ docker-compose up
 
 > react-app runs on: https://localhost:3000
 
+> MySQL runs on port 3307
+
