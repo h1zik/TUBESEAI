@@ -6,13 +6,11 @@
 ```
 cd PATH/to/your/directory
 ```
-**4. If you use terminal inside Visual Studio Code just open the project folder**
-,type and enter:
+**4. If you use terminal inside Visual Studio Code just open the project folder**, type and enter:
 ```
 docker-compose build
 ```
-**5. Just wait for the docker to build the project**
-.After finished, type and enter:
+**5. Just wait for the docker to build the project**. After finished, type and enter:
 ```
 docker-compose up
 ```
