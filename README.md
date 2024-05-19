@@ -6,15 +6,17 @@
 ```
 cd PATH/to/your/directory
 ```
-**4. If you use terminal inside Visual Studio Code just open the project folder**, type and enter:
+**4. If you use terminal inside Visual Studio Code just open the project folder**
+
+**5. In the terminal/CMD, type and enter:
 ```
 docker-compose build
 ```
-**5. Just wait for the docker to build the project**. After finished, type and enter:
+**6. Just wait for the docker to build the project**. After finished, type and enter:
 ```
 docker-compose up
 ```
-**6. It will run the whole services**
+**7. It will run the whole services**
 > user-services runs on: https://localhost:5001
 
 > topup-services runs on: https://localhost:5002
