@@ -8,7 +8,7 @@ cd PATH/to/your/directory
 ```
 **4. If you use terminal inside Visual Studio Code just open the project folder**
 
-**5. In the terminal/CMD, type and enter:
+**5. In the terminal/CMD, type and enter:**
 ```
 docker-compose build
 ```
